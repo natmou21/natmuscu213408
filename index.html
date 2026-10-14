@@ -16,12 +16,25 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" href="icon-192.png">
+
+  <!-- Applique le thème choisi avant l'affichage, pour éviter un flash. -->
+  <script>
+    try {
+      var d = JSON.parse(localStorage.getItem('muscu.v1'));
+      var t = d && d.settings && d.settings.theme;
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="app"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <noscript>Cette application a besoin de JavaScript.</noscript>
   <script src="data.js"></script>
+  <script src="core.js"></script>
+  <script src="body.js"></script>
+  <script src="views.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
